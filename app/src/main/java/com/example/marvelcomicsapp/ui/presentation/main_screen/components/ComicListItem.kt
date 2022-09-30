@@ -10,11 +10,10 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.marvelcomicsapp.domain.model.Comic
 
 @Composable
 fun ComicListItem(
-    item : Comic
+    item : com.example.domain.entities.Comic
 ) {
     Card(modifier = Modifier
         .fillMaxWidth()
