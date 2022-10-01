@@ -1,6 +1,5 @@
 package com.example.data.repository
 
-import android.util.Log
 import com.example.data.ComicApi
 import com.example.data.sources.network.models.toComic
 import com.example.domain.entities.Comic
@@ -21,7 +20,6 @@ class ComicsRepositoryImpl(
                 return Resource.Success(list)
             }
             is Resource.Failure -> {
-                Log.d("Caught","${result.throwable.message}")
                 //Deal with DB?
                 return result
             }

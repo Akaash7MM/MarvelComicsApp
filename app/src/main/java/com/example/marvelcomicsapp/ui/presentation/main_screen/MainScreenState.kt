@@ -1,7 +1,8 @@
 package com.example.marvelcomicsapp.ui.presentation.main_screen
 
-data class MainScreenState(
-    val list:List<com.example.domain.entities.Comic> = emptyList(),
-    val data:Boolean = false,
-    val message:String = "Error occured, this is in state"
-)
+sealed class MainScreenState<out T>{
+    object Empty : MainScreenState<Nothing>()
+    object Loading:MainScreenState<Nothing>()
+    class  Failure(val throwable: Throwable):MainScreenState<Nothing>()
+    class Success<T>(val data : T): MainScreenState<T>()
+}
