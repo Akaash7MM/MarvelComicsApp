@@ -20,6 +20,7 @@ class ComicApiImpl (
             client.get(getURl(COMICS_URL)){
                 url{
                     parameters.apply {
+                        append("titleStartsWith","r")
                         append("ts", TIME_STAMP)
                         append("apikey", API_KEY)
                         append("hash", hashGen())

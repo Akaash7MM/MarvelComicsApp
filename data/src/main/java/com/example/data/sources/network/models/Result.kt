@@ -41,6 +41,6 @@ fun Result.toComic (): Comic {
         title = title,
         pageCount = pageCount,
         description = description,
-        imageURL = thumbnail.path + thumbnail.extension
+        imageURL = thumbnail.path+"."+thumbnail.extension
     )
 }
