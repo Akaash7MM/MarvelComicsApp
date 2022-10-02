@@ -1,5 +1,6 @@
 package com.example.marvelcomicsapp.ui.presentation.main_screen
 
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -19,6 +20,9 @@ class MainScreenViewModel @Inject constructor(
     var screenState: MainScreenState<List<Comic>> by mutableStateOf(MainScreenState.Empty)
         private set
 
+    var backgroundState : MutableState<BackgroundState> = mutableStateOf(BackgroundState())
+        private set
+
     init {
         screenState = MainScreenState.Loading
 
@@ -34,5 +38,12 @@ class MainScreenViewModel @Inject constructor(
             }
 
         }
+    }
+
+
+    fun setBGurl(url:String){
+        backgroundState.value = backgroundState.value.copy(
+            imageUrl = url
+        )
     }
 }

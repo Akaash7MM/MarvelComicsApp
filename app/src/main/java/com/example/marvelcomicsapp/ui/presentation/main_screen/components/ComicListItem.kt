@@ -1,5 +1,6 @@
 package com.example.marvelcomicsapp.ui.presentation.main_screen.components
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
@@ -13,7 +14,8 @@ import com.example.domain.entities.Comic
 
 @Composable
 fun ComicListItem(
-    item : Comic
+    item : Comic,
+    onClick : () ->Unit
 ) {
     Card(modifier = Modifier
         .wrapContentWidth()
@@ -29,6 +31,10 @@ fun ComicListItem(
             ) {
 
                 AsyncImage(
+                    modifier = Modifier
+                        .clickable {
+                            onClick()
+                        },
                     model = item.imageURL,
                     contentDescription = null )
         }
