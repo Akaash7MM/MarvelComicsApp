@@ -15,6 +15,7 @@ import javax.inject.Inject
 @HiltViewModel
 class MainScreenViewModel @Inject constructor(
     private val useCases: GetUseCases
+    //private val getComicsUseCase: GetComicsUseCase
 ):ViewModel() {
 
     var screenState: MainScreenState<List<Comic>> by mutableStateOf(MainScreenState.Empty)
@@ -27,7 +28,7 @@ class MainScreenViewModel @Inject constructor(
         screenState = MainScreenState.Loading
 
         ioScope {
-            val response = useCases.getComics()
+            val response = useCases.getComics.invoke()
             when (response) {
                 is Resource.Failure -> {
                     screenState = MainScreenState.Failure(response.throwable)

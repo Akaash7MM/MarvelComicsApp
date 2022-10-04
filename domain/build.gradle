@@ -11,5 +11,7 @@ java {
 }
 
 dependencies {
-    implementation 'com.google.dagger:hilt-core:2.44'
+    api 'com.google.dagger:hilt-core:2.44'
+    implementation 'javax.inject:javax.inject:1'
+
 }

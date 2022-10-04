@@ -1,4 +1,4 @@
-package com.example.data.di
+package com.example.domain.di
 
 import com.example.domain.entities.GetUseCases
 import com.example.domain.repository.ComicRepository
@@ -19,7 +19,14 @@ object UseCaseModule {
     fun provideUseCases(repository: ComicRepository) : GetUseCases {
         return GetUseCases(
             getComics = GetComicsUseCase(repository)
-           // getSearch = GetComicsUseCase(repository)
         )
     }
+/*
+    @Provides
+    @Singleton
+    fun provideGetComicsUseCase(repository: ComicRepository):GetComicsUseCase{
+        return GetComicsUseCase(repository =repository )
+    }
+
+ */
 }

@@ -87,9 +87,9 @@ dependencies {
     implementation "com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.2"
 
     //Dagger-HILT
-    implementation 'com.google.dagger:hilt-android:2.44'
+    api 'com.google.dagger:hilt-android:2.44'
     kapt 'com.google.dagger:hilt-compiler:2.44'
-   // kapt "com.google.dagger:hilt-android-compiler:2.44"
+    kapt "com.google.dagger:hilt-android-compiler:2.44"
 
     //Compose Dependecies
     implementation "androidx.lifecycle:lifecycle-viewmodel-compose:2.6.0-alpha02"
@@ -101,4 +101,15 @@ dependencies {
     //Coil
     implementation("io.coil-kt:coil:2.2.1")
     implementation("io.coil-kt:coil-compose:2.2.1")
+
+    //Accompanist
+    implementation "com.google.accompanist:accompanist-systemuicontroller:0.26.4-beta"
+
+    //jetlime
+    implementation("io.github.pushpalroy:jetlime:1.0.3")
+
+    //
+
+
+
 }
