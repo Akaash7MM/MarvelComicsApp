@@ -41,9 +41,13 @@ class MainScreenViewModel @Inject constructor(
     }
 
 
-    fun setBGurl(url:String){
+    fun setBGdetails(comicItem:Comic){
         backgroundState.value = backgroundState.value.copy(
-            imageUrl = url
+            title = comicItem.title,
+            pageCount = comicItem.pageCount,
+            imageUrl = comicItem.imageURL,
+            description = comicItem.description,
+            price = comicItem.price
         )
     }
 }

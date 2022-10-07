@@ -10,7 +10,7 @@ data class Result(
    // val collections: List<Any>,
     val creators: Creators,
     val dates: List<Date>,
-    val description: String ="",
+    val description: String?,
     val diamondCode: String,
     val digitalId: Int,
     val ean: String,
@@ -40,7 +40,8 @@ fun Result.toComic (): Comic {
     return Comic(
         title = title,
         pageCount = pageCount,
-        description = description,
+        description = description ?: " ",
+        price = prices.get(0).price,
         imageURL = thumbnail.path+"."+thumbnail.extension
     )
 }

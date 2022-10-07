@@ -19,7 +19,6 @@ object UseCaseModule {
     fun provideUseCases(repository: ComicRepository) : GetUseCases {
         return GetUseCases(
             getComics = GetComicsUseCase(repository)
-           // getSearch = GetComicsUseCase(repository)
         )
     }
 }

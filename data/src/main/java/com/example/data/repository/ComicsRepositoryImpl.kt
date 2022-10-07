@@ -14,6 +14,8 @@ class ComicsRepositoryImpl(
 
         val result = api.getComics()
 
+
+
         when(result){
             is Resource.Success -> {
                 val list =  result.result.data.results.map { it.toComic() }
