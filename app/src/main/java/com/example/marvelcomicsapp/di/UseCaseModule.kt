@@ -1,4 +1,4 @@
-package com.example.data.di
+package com.example.marvelcomicsapp.di
 
 import com.example.domain.entities.GetUseCases
 import com.example.domain.repository.ComicRepository

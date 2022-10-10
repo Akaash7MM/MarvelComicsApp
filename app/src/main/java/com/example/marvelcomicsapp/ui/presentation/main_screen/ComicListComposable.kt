@@ -1,5 +1,7 @@
 package com.example.marvelcomicsapp.ui.presentation.main_screen.components
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -8,6 +10,8 @@ import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -24,9 +28,11 @@ import com.example.marvelcomicsapp.ui.presentation.main_screen.ComicDetailBottom
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.launch
 
+@RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalAnimationApi::class, ExperimentalMaterialApi::class,
     DelicateCoroutinesApi::class
 )
+//how should i name this?
 @Composable
 fun ComicListComposable(
     comicItemsList:List<Comic>,
@@ -36,12 +42,17 @@ fun ComicListComposable(
 
     val url = bgState.imageUrl
     val title = bgState.title
-    val pageCount = bgState.pageCount
     val price = bgState.price
+
     val coroutineScope = rememberCoroutineScope()
     val listState = rememberLazyListState()
 
-    val sheetState = rememberBottomSheetState(initialValue = BottomSheetValue.Collapsed)
+    val selectionId = remember {
+        mutableStateOf(-1)
+    }
+    val sheetState = rememberBottomSheetState(
+        initialValue = BottomSheetValue.Collapsed
+    )
     val sheetScaffoldState = rememberBottomSheetScaffoldState(
         bottomSheetState = sheetState
     )
@@ -52,8 +63,11 @@ fun ComicListComposable(
                 ComicDetailBottomSheet(
                     bgState,
                     sheetState) },
-                sheetBackgroundColor = Color.Transparent,
+            sheetBackgroundColor = Color.Transparent,
         )  {
+
+            //This in another composable?
+
             Surface(
                 modifier = Modifier
                     .fillMaxSize(),
@@ -82,7 +96,7 @@ fun ComicListComposable(
                 ) {
                     Text(
                         modifier = Modifier
-                            .padding(horizontal = 20.dp),
+                            .padding(start = 20.dp),
                         text = title,
                         fontSize = 22.sp,
                         fontWeight = FontWeight.Bold,
@@ -91,15 +105,15 @@ fun ComicListComposable(
                     Text(
                         modifier = Modifier
                             .padding(horizontal = 20.dp),
-                        text = "$$price",
+                        text = if(price==0.0) "" else "$$price",
                         fontSize = 18.sp,
                         fontWeight = FontWeight.Bold,
                         color = Color.White
                     )
-                    Spacer(modifier = Modifier.height(80.dp))
+                    Spacer(modifier = Modifier.height(40.dp))
                     Text(
                         modifier = Modifier
-                            .padding(horizontal = 20.dp),
+                            .padding(start = 20.dp,top= 10.dp, bottom = 10.dp),
                         text = "Marvel Comics",
                         fontSize = 22.sp,
                         fontWeight = FontWeight.Bold,
@@ -112,18 +126,23 @@ fun ComicListComposable(
                             .wrapContentWidth(),
                         verticalAlignment = Alignment.Bottom,
                         horizontalArrangement = Arrangement.Center,
-                        contentPadding = PaddingValues(start = 10.dp, bottom =150.dp, end = 10.dp)
+                        contentPadding = PaddingValues(start = 0.dp,end = 0.dp,bottom =100.dp)
                     ) {
 
                         itemsIndexed(comicItemsList) {index,item ->
 
                                 ComicListItem(
                                     item = item,
+                                    index = index,
+                                    selectionId = selectionId.value,
                                     onClick = {
                                         onClick(item)
+
                                         coroutineScope.launch {
                                             listState.animateScrollToItem(index)
                                         }
+
+                                        selectionId.value = index
                                     }
                                 )
 

@@ -1,5 +1,7 @@
 package com.example.marvelcomicsapp.ui.presentation.main_screen
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.layout.Box
@@ -15,6 +17,7 @@ import com.example.marvelcomicsapp.ui.presentation.main_screen.components.ComicL
 import com.example.marvelcomicsapp.ui.presentation.main_screen.components.GenericFailureScreen
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
+@RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun MainScreen(

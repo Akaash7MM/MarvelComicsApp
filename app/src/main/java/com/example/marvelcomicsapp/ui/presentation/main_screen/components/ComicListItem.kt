@@ -1,10 +1,7 @@
 package com.example.marvelcomicsapp.ui.presentation.main_screen.components
 
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.Card
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -13,16 +10,16 @@ import coil.compose.AsyncImage
 import com.example.domain.entities.Comic
 import com.example.marvelcomicsapp.ui.presentation.main_screen.components.bottom_sheet.TimeLine
 
-// Cards wraps Content -> size declared image OK
-// Card size declared -> image fillmaxsize()
-//
 @Composable
 fun ComicListItem(
     item : Comic,
+    index : Int,
+    selectionId : Int,
     onClick : () ->Unit
 ) {
     Column {
         Card(modifier = Modifier
+            .padding(15.dp)
             .clickable {
                 onClick()
             }
@@ -33,7 +30,7 @@ fun ComicListItem(
                 model = item.imageURL,
                 contentDescription = null )
         }
-        Spacer(modifier = Modifier.height(10.dp))
-        TimeLine()
+        Spacer(modifier = Modifier.height(5.dp))
+        TimeLine(index = index,selectionId = selectionId)
     }
 }
